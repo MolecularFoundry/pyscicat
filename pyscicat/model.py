@@ -136,8 +136,6 @@ class Dataset(Ownable):
     version: Optional[str]
     scientificMetadata: Optional[Dict]
 
-class UpdateDataset(Dataset, metaclass=_AllOptional):
-    pass
 
 class RawDataset(Dataset):
     """
@@ -152,8 +150,6 @@ class RawDataset(Dataset):
     sampleId: Optional[str]
     proposalId: Optional[str]
 
-class UpdateRawDataset(Dataset, metaclass=_AllOptional):
-    pass
 
 
 class DerivedDataset(Dataset):
@@ -168,8 +164,7 @@ class DerivedDataset(Dataset):
     jobLogData: Optional[str]
     type: DatasetType = DatasetType.derived
 
-class UpdateDerivedDataset(DerivedDataset, metaclass=_AllOptional):
-    pass
+
 
 class DataFile(MongoQueryable):
     """
