@@ -333,6 +333,34 @@ class ScicatClient:
     """
     update_dataset = datasets_update
 
+    def datasets_partial_update(self, data: dict, pid: str) -> str:
+        """Updates an existing dataset but allows a dictionary to be passed in
+         with only a subset of the fields you would like to update.
+        
+        Parameters
+        ----------
+        data : dictionary
+
+        pid
+            pid (or unique identifier) of dataset being updated
+
+        Returns
+        -------
+        str
+            pid (or unique identifier) of the dataset
+        Raises
+        ------
+        ScicatCommError
+            Raises if a non-20x message is returned
+        """
+        return self._call_endpoint(
+            cmd="patch",
+            endpoint=f"Datasets/{quote_plus(pid)}",
+            data=data,
+            operation="datasets_partial_update",
+        )
+
+
     def datasets_datablock_create(
         self, datablock: Datablock, datasetType: str = "RawDatasets"
     ) -> dict:
